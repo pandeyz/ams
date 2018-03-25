@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <base href="http://localhost/ams/">
+    <title>Uber Form Builder</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body ng-app="ams" ng-controller="AssociateController">
+
+<div class="container-fluid">
+    <div class="row" ng-include="'views/header.html'"></div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-8 col-lg-offset-2">
+			<h2>Add Associate</h2>
+			<form name="form" ng-submit="addAssociate()">
+				<div class="row">
+		            <div class="col-md-6">
+		                <div class="form-group">
+		                    <label for="name">Name *</label>
+		                    <input type="text" name="name" class="form-control" placeholder="Please enter your name" ng-model="associate.name" required>
+		                    <div class="help-block with-errors" ng-show="form.name.$dirty && form.name.$error.required">Name is required</div>
+		                </div>
+		            </div>
+		            <div class="col-md-6">
+		                <div class="form-group">
+		                    <label for="phone">Phone *</label>
+		                    <input type="text" name="phone" class="form-control" placeholder="Please enter your phone" ng-model="associate.phone" required>
+		                </div>
+		            </div>
+		        </div>
+		        <div class="row">
+		            <div class="col-md-12">
+		                <div class="form-group">
+		                    <label for="address">Address</label>
+		                    <textarea name="address" class="form-control" placeholder="Enter your address" ng-model="associate.address"></textarea>
+		                </div>
+		            </div>
+		            <div class="col-md-4">
+		                <div class="form-group">
+		                    <label for="specialization">Specialization</label>
+							<ul>
+								<li ng-repeat="x in associate.specialization">{{x}}<span class="btn btn-link" ng-click="removeSpecialization($index)"> Remove</span></li>
+								<li ng-show="!associate.specialization.length">No specialization added yet.</li>
+							</ul>
+							<input type="text" class="form-control" ng-model="newSpecialization">
+							<button type="button" class="btn btn-link" ng-click="addSpecialization()">Add</button>
+		                </div>
+		            </div>
+		            <div class="col-md-12">
+		                <input type="submit" class="btn btn-success btn-send" value="Add">
+		            </div>
+		        </div>
+			</form>	
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<!-- <pre>{{associate}}</pre> -->
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid">
+    <div class="row" ng-include="'views/footer.html'"></div>
+</div>
+
+<!-- JS Files List :start -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+	<script src="assets/js/app.js"></script>
+	<!-- JS Files List :end -->
+
+</body>
+</html>
